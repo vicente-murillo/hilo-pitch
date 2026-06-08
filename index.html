@@ -705,10 +705,17 @@
       display: flex;
       flex-direction: column;
     }
+    .platform-subhead {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      max-width: 560px;
+      margin-bottom: 1rem;
+    }
     .platform-col h3 {
       font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 1.05rem;
+      font-weight: 700;
+      font-size: 22px;
       margin-bottom: 0.35rem;
       color: var(--text-primary);
     }
@@ -2175,7 +2182,38 @@
       line-height: 1.12;
       letter-spacing: -0.02em;
       color: var(--text-primary);
+      margin-bottom: 0.65rem;
+    }
+    .setup-subhead {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      max-width: 640px;
       margin-bottom: 1.25rem;
+    }
+    .setup-tool-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.35rem;
+    }
+    .setup-tool-pill {
+      background: var(--accent-soft);
+      border: 1px solid var(--border-accent);
+      color: var(--text-accent);
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+    .setup-tool-note {
+      font-size: 12px;
+      color: var(--text-accent);
+      text-align: center;
+      line-height: 1.4;
+      margin-top: 0.15rem;
     }
     .setup-flow {
       position: relative;
@@ -2306,7 +2344,7 @@
     @keyframes setupBarFill { to { width: 100%; } }
     .setup-milestones {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 0.5rem;
     }
     .setup-milestone {
@@ -2325,6 +2363,7 @@
     .slide-setup.active .setup-milestone:nth-child(2) { animation: fadeIn 0.35s ease forwards 1800ms; }
     .slide-setup.active .setup-milestone:nth-child(3) { animation: fadeIn 0.35s ease forwards 2050ms; }
     .slide-setup.active .setup-milestone:nth-child(4) { animation: fadeIn 0.35s ease forwards 2200ms; }
+    .slide-setup.active .setup-milestone:nth-child(5) { animation: fadeIn 0.35s ease forwards 2350ms; }
     @keyframes fadeIn { to { opacity: 1; } }
 
     /* SLIDE — Un día con Hilo */
@@ -3275,19 +3314,22 @@
       <section class="slide slide-platform" data-slide="2">
         <p class="label reveal">QUÉ ES HILO</p>
         <h2 class="headline-platform reveal" data-delay="1">
-          Una plataforma web con IA<br>que vive donde trabaja<br>tu <span class="accent">empresa</span>.
+          Hilo es un bot con IA propia<br>que vive dentro de una plataforma.<br>Aprende solo. Nutre <span class="accent">todo</span>.
         </h2>
+        <p class="platform-subhead reveal" data-delay="2">
+          El bot conversa con empleados, managers y RRHH. Cada respuesta, cada check-in, cada entrevista nutre automáticamente los 4 módulos de la plataforma.
+        </p>
         <div class="platform-grid">
-          <article class="card platform-col reveal" data-delay="2">
-            <svg class="card-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M20 6L8 12v8c0 6 5 11 12 12 7-1 12-6 12-12v-8L20 6z"/>
-              <path d="M18 18v4" stroke="currentColor"/>
-            </svg>
-            <h3>Admin</h3>
-            <span class="platform-role-pill">HR · CEO · People Director</span>
-            <p>Configura los beneficios del ranking, gestiona las fases de implementación, ve el ranking global de la empresa, analytics de rotación y ROI, y accede a la memoria institucional.</p>
-          </article>
           <article class="card platform-col reveal" data-delay="3">
+            <svg class="card-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="20" cy="14" r="6"/>
+              <path d="M10 34c0-5.5 4.5-10 10-10s10 4.5 10 10"/>
+            </svg>
+            <h3>Empleado</h3>
+            <span class="platform-role-pill">Todos</span>
+            <p>Habla con el bot de Hilo para resolver dudas y completar su onboarding. Hace check-ins los lunes y viernes. Cada conversación nutre el conocimiento de la empresa.</p>
+          </article>
+          <article class="card platform-col reveal" data-delay="4">
             <svg class="card-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
               <circle cx="14" cy="16" r="4"/><circle cx="26" cy="16" r="4"/>
               <path d="M8 30c0-4 3.5-7 8-7h8c4.5 0 8 3 8 7"/>
@@ -3295,19 +3337,19 @@
             </svg>
             <h3>Manager</h3>
             <span class="platform-role-pill">Gerentes · Líderes</span>
-            <p>Dashboard en tiempo real de su equipo, alertas tempranas de burnout o desenganche, momentos sugeridos para conectar con su gente y ranking de su equipo.</p>
+            <p>Recibe alertas del bot cuando detecta señales en su equipo. Consulta proyectos activos y el estado de cada persona sin hacer encuestas.</p>
           </article>
-          <article class="card platform-col reveal" data-delay="4">
+          <article class="card platform-col reveal" data-delay="5">
             <svg class="card-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="20" cy="14" r="6"/>
-              <path d="M10 34c0-5.5 4.5-10 10-10s10 4.5 10 10"/>
+              <path d="M20 6L8 12v8c0 6 5 11 12 12 7-1 12-6 12-12v-8L20 6z"/>
+              <path d="M18 18v4" stroke="currentColor"/>
             </svg>
-            <h3>Empleado</h3>
-            <span class="platform-role-pill">Todos</span>
-            <p>Ranking mensual de la empresa con sus puntos y beneficios, onboarding personalizado, chat con Hilo y mapa de conocimiento.</p>
+            <h3>Admin</h3>
+            <span class="platform-role-pill">HR · CEO</span>
+            <p>Configura cómo funciona el bot para su empresa. Define beneficios, cargos y reglas. Ve el ROI real y analytics globales. Solo Admin ve los datos financieros.</p>
           </article>
         </div>
-        <div class="platform-security reveal" data-delay="5">
+        <div class="platform-security reveal" data-delay="6">
           <svg class="platform-security-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <path d="M18 4L6 10v8c0 7.2 5.1 13.9 12 15 6.9-1.1 12-7.8 12-15v-8L18 4z"/>
             <rect x="14" y="16" width="8" height="7" rx="1" stroke="currentColor"/>
@@ -3323,9 +3365,9 @@
             </div>
           </div>
         </div>
-        <div class="platform-divider reveal" data-delay="5"></div>
-        <p class="platform-tagline reveal" data-delay="5">
-          No es un bot. No es una app móvil. Es la plataforma que conecta a las personas con el conocimiento de su empresa.
+        <div class="platform-divider reveal" data-delay="6"></div>
+        <p class="platform-tagline reveal" data-delay="6">
+          El bot es el corazón de Hilo. La plataforma es donde vive y donde todo el conocimiento se organiza.
         </p>
         <div class="platform-badges">
           <span class="platform-badge">Slack</span>
@@ -3337,7 +3379,7 @@
           <span class="platform-badge">Zoom</span>
           <span class="platform-badge">Microsoft Teams</span>
         </div>
-        <p class="platform-footnote reveal" data-delay="6">
+        <p class="platform-footnote reveal" data-delay="7">
           Se integra con las herramientas que ya usas. Sin reemplazar nada.
         </p>
       </section>
@@ -3426,24 +3468,22 @@
         <h2 class="headline-users reveal">Tres roles. Cada uno ve<br>lo que necesita ver.</h2>
         <p class="users-subhead reveal" data-delay="1">Sin complejidad innecesaria. Sin pantallas que no se usan.</p>
         <div class="users-grid">
-          <article class="card users-role-card users-role-card--admin">
+          <article class="card users-role-card users-role-card--employee">
             <svg class="users-role-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path d="M24 8L10 16v10c0 8 6 15 14 16 8-1 14-8 14-16V16L24 8z"/>
+              <circle cx="24" cy="16" r="7"/>
+              <path d="M12 40c0-6.6 5.4-12 12-12s12 5.4 12 12"/>
             </svg>
-            <p class="users-role-title">Admin</p>
-            <p class="users-role-sub">HR Manager · CEO · People Director</p>
+            <p class="users-role-title">Empleado</p>
+            <p class="users-role-sub">Todos</p>
             <div class="users-divider"></div>
             <p class="users-section-label">Qué puede hacer</p>
             <ul class="users-list">
-              <li>Seleccionar 3 beneficios del pool de 30</li>
-              <li>Gestionar las fases de implementación</li>
-              <li>Configurar onboardings por cargo con plantillas predefinidas</li>
-              <li>Ver el ranking completo de la empresa</li>
-              <li>Acceder a la Memoria Institucional</li>
-              <li>Ver analytics de rotación y ROI</li>
-              <li>Configurar integraciones y módulos</li>
+              <li>Habla con el bot de Hilo para resolver dudas</li>
+              <li>Completa su onboarding personalizado</li>
+              <li>Hace check-ins los lunes y viernes</li>
+              <li>Cada conversación nutre el conocimiento de la empresa</li>
             </ul>
-            <p class="users-foot-pill">1–3 personas por empresa</p>
+            <p class="users-foot-pill">Toda la empresa</p>
           </article>
           <article class="card users-role-card users-role-card--manager">
             <svg class="users-role-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -3451,36 +3491,33 @@
               <path d="M10 36c0-5 4.5-9 10-9s10 4 10 9"/>
             </svg>
             <p class="users-role-title">Manager</p>
-            <p class="users-role-sub">Gerentes · Subgerentes · Líderes</p>
+            <p class="users-role-sub">Gerentes · Líderes</p>
             <div class="users-divider"></div>
             <p class="users-section-label">Qué puede hacer</p>
             <ul class="users-list">
-              <li>Ver estado real de su equipo en tiempo real</li>
-              <li>Recibir alertas tempranas de Hilo</li>
-              <li>Ver momentos sugeridos para conectar</li>
-              <li>Acceder al ranking de su equipo</li>
-              <li>Ver la ficha detallada de cada persona</li>
+              <li>Habla con el bot de Hilo cuando necesita información</li>
+              <li>Recibe alertas del bot cuando detecta señales en su equipo</li>
+              <li>Consulta proyectos activos y el estado de cada persona</li>
+              <li>Monitorea su equipo sin hacer encuestas</li>
             </ul>
             <p class="users-foot-pill">Todos los líderes</p>
           </article>
-          <article class="card users-role-card users-role-card--employee">
+          <article class="card users-role-card users-role-card--admin">
             <svg class="users-role-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <circle cx="24" cy="16" r="7"/>
-              <path d="M12 40c0-6.6 5.4-12 12-12s12 5.4 12 12"/>
+              <path d="M24 8L10 16v10c0 8 6 15 14 16 8-1 14-8 14-16V16L24 8z"/>
             </svg>
-            <p class="users-role-title">Empleado</p>
-            <p class="users-role-sub">Todos los trabajadores</p>
+            <p class="users-role-title">Admin</p>
+            <p class="users-role-sub">HR · CEO</p>
             <div class="users-divider"></div>
             <p class="users-section-label">Qué puede hacer</p>
             <ul class="users-list">
-              <li>Ver su posición en el ranking mensual</li>
-              <li>Acumular puntos y canjear beneficios</li>
-              <li>Completar su onboarding personalizado</li>
-              <li>Hablar con Hilo cuando necesite algo</li>
-              <li>Explorar el mapa de conocimiento</li>
-              <li>Hacer check-in los lunes y viernes</li>
+              <li>Habla con el bot de Hilo cuando necesita consultar algo</li>
+              <li>Configura cómo funciona el bot para su empresa</li>
+              <li>Define beneficios, cargos y reglas</li>
+              <li>Ve el ROI real y analytics globales</li>
+              <li>Solo Admin ve los datos financieros</li>
             </ul>
-            <p class="users-foot-pill">Toda la empresa</p>
+            <p class="users-foot-pill">1–3 personas por empresa</p>
           </article>
         </div>
         <div class="users-access-card">
@@ -3498,8 +3535,9 @@
       <!-- SLIDE 05 — SETUP -->
       <section class="slide slide-setup" data-slide="5">
         <p class="label reveal">EL SETUP</p>
-        <h2 class="headline-setup reveal" data-delay="1">En 3 semanas, Hilo ya conoce<br>tu empresa mejor que muchos<br>de tus <span class="accent">empleados</span>.</h2>
-        <div class="setup-flow reveal" data-delay="2">
+        <h2 class="headline-setup reveal" data-delay="1">Hilo aprende de lo que ya<br>existe antes de hacer la<br>primera <span class="accent">pregunta</span>.</h2>
+        <p class="setup-subhead reveal" data-delay="2">Primero lee en silencio las herramientas que tu empresa ya usa. Con ese contexto, sus entrevistas son inteligentes y específicas. Nunca parte desde cero.</p>
+        <div class="setup-flow reveal" data-delay="3">
           <svg class="setup-flow-line" viewBox="0 0 1000 4" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0 2 H1000" pathLength="1000"/>
           </svg>
@@ -3513,8 +3551,20 @@
               </svg>
               <p class="setup-step-meta">Semana 1 · Día 1–2</p>
               <h3>Conecta tus herramientas</h3>
-              <p>El admin conecta Slack, Jira, Notion, Google Workspace y el HRIS en 30 minutos. Hilo empieza a leer el contexto que ya existe sin que nadie haga nada extra.</p>
-              <span class="setup-step-tag">30 minutos de setup</span>
+              <p>Hilo lee todo lo que ya existe: conversaciones, proyectos, documentos, reuniones y estructura del equipo. En horas construye una base de conocimiento sin que nadie haga nada extra.</p>
+              <p>Antes de la primera entrevista, Hilo ya sabe quién trabaja en qué, cómo se comunica cada equipo y qué proyectos están activos.</p>
+              <span class="setup-step-tag">Horas, no semanas</span>
+              <div class="setup-tool-pills">
+                <span class="setup-tool-pill">Slack</span>
+                <span class="setup-tool-pill">Jira</span>
+                <span class="setup-tool-pill">Notion</span>
+                <span class="setup-tool-pill">Google Workspace</span>
+                <span class="setup-tool-pill">BambooHR</span>
+                <span class="setup-tool-pill">GitHub</span>
+                <span class="setup-tool-pill">Zoom</span>
+                <span class="setup-tool-pill">Microsoft Teams</span>
+              </div>
+              <p class="setup-tool-note">Con esto Hilo ya tiene el 40% del contexto antes de hacer la primera pregunta.</p>
             </article>
             <article class="card setup-step">
               <span class="setup-step-num" aria-hidden="true">2</span>
@@ -3523,8 +3573,9 @@
                 <path d="M10 10V6h8v4M14 14h4" stroke="currentColor"/>
               </svg>
               <p class="setup-step-meta">Semana 1 · Día 3–5</p>
-              <h3>Captura el DNA</h3>
-              <p>La IA entrevista a cada líder de equipo en 3 sesiones de 60 minutos. Captura cómo trabaja cada equipo realmente, no cómo dice el manual que trabaja.</p>
+              <h3>Entrevistas con contexto</h3>
+              <p>Porque ya leyó las herramientas, las entrevistas con líderes son específicas e inteligentes.</p>
+              <p>No pregunta «¿qué hace tu equipo?» Ya lo sabe. Pregunta «¿cuál de estos 3 proyectos activos es el más crítico y por qué?» Eso genera confianza.</p>
               <span class="setup-step-tag">3 sesiones por líder</span>
             </article>
             <article class="card setup-step">
@@ -3552,15 +3603,16 @@
             </article>
           </div>
         </div>
-        <div class="setup-context reveal" data-delay="3">
+        <div class="setup-context reveal" data-delay="4">
           <p class="setup-context-label">Crecimiento del contexto de Hilo sobre tu empresa</p>
           <div class="setup-context-track" aria-hidden="true">
             <div class="setup-context-fill"></div>
           </div>
           <div class="setup-milestones">
-            <p class="setup-milestone"><strong>Día 1</strong>40% — básico pero útil</p>
-            <p class="setup-milestone"><strong>Mes 3</strong>70% — reconoce patrones reales</p>
-            <p class="setup-milestone"><strong>Mes 6</strong>85% — conoce la empresa</p>
+            <p class="setup-milestone"><strong>Día 1</strong>40% — leyó tus herramientas</p>
+            <p class="setup-milestone"><strong>Mes 1</strong>65% — completó entrevistas</p>
+            <p class="setup-milestone"><strong>Mes 3</strong>80% — reconoce patrones</p>
+            <p class="setup-milestone"><strong>Mes 6</strong>90% — conoce la empresa</p>
             <p class="setup-milestone"><strong>Año 1</strong>95% — indispensable</p>
           </div>
         </div>
