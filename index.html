@@ -2075,6 +2075,15 @@
     .bmc-year-card dt { color: var(--text-muted); }
     .bmc-year-card dd { color: var(--text-primary); font-family: var(--font-mono); text-align: right; }
     .bmc-year-card dd.accent { color: var(--accent-text); font-weight: 600; }
+    .bmc-year-card dd.bmc-year-note {
+      grid-column: 1 / -1;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: left;
+      margin-top: 0.25rem;
+    }
     .bmc-chart-wrap {
       height: 200px;
       position: relative;
@@ -2082,6 +2091,14 @@
       background: var(--bg-surface);
       border: 1px solid var(--border);
       border-radius: 8px;
+    }
+    .bmc-chart-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.5rem;
+      text-align: center;
     }
     .bmc-costs-grid {
       display: grid;
@@ -4267,7 +4284,7 @@
                 <p class="bmc-block-title">Socios clave</p>
                 <ul>
                   <li>Google Cloud / AWS</li>
-                  <li>OpenAI / Anthropic</li>
+                  <li>GPU cloud providers (RunPod · Lambda Labs)</li>
                   <li>Slack, Jira, Notion (APIs)</li>
                   <li>Consultoras de RRHH</li>
                   <li>Inversores ángel</li>
@@ -4343,7 +4360,7 @@
                 <p class="bmc-block-title">Estructura de costos</p>
                 <ul>
                   <li>Infraestructura cloud</li>
-                  <li>APIs de IA (por uso)</li>
+                  <li>GPU hosting modelo IA propio</li>
                   <li>Equipo fundador</li>
                   <li>Customer success</li>
                   <li>Marketing y ventas</li>
@@ -4401,48 +4418,43 @@
           <div class="bmc-tab-panel" id="bmc-panel-proyeccion" role="tabpanel" hidden>
             <div class="bmc-proy-grid">
               <article class="bmc-block bmc-year-card">
-                <h4>Año 1 — Chile</h4>
+                <h4>Año 1 — Chile · 5 clientes</h4>
                 <dl>
-                  <dt>Ingreso anual</dt><dd>$180.000</dd>
+                  <dt>Ingresos</dt><dd>$195.000 USD/año</dd>
                   <dt>MRR</dt><dd>$15.000/mes</dd>
-                  <dt>Fees implementación</dt><dd>$15.000</dd>
-                  <dt>Total año 1</dt><dd class="accent">$195.000</dd>
-                  <dt>Costos</dt><dd>$55.680</dd>
-                  <dt>Neto</dt><dd class="accent">$139.320</dd>
-                  <dt>Margen</dt><dd>71%</dd>
-                  <dt>Clientes</dt><dd>5 empresas × 200 emp × $15</dd>
+                  <dt>Costos</dt><dd>$16.692/año</dd>
+                  <dt>Resultado neto</dt><dd class="accent">$178.308</dd>
+                  <dt>Margen bruto</dt><dd class="accent">91%</dd>
+                  <dt></dt><dd class="bmc-year-note">5 empresas × 200 emp × $15 (equipo en equity)</dd>
                 </dl>
               </article>
               <article class="bmc-block bmc-year-card featured">
-                <h4>Año 2 — Chile + expansión</h4>
+                <h4>Año 2 — Chile+ · 20 clientes</h4>
                 <dl>
-                  <dt>Ingreso anual</dt><dd>$864.000</dd>
+                  <dt>Ingresos</dt><dd>$924.000 USD/año</dd>
                   <dt>MRR</dt><dd>$72.000/mes</dd>
-                  <dt>Fees implementación</dt><dd>$60.000</dd>
-                  <dt>Total año 2</dt><dd class="accent">$924.000</dd>
-                  <dt>Costos</dt><dd>$174.000</dd>
-                  <dt>Neto</dt><dd class="accent">$750.000</dd>
-                  <dt>Margen</dt><dd>81%</dd>
-                  <dt>Clientes</dt><dd>20 empresas × 300 emp × $12</dd>
+                  <dt>Costos</dt><dd>$139.200/año</dd>
+                  <dt>Resultado neto</dt><dd class="accent">$784.800</dd>
+                  <dt>Margen bruto</dt><dd class="accent">85%</dd>
+                  <dt></dt><dd class="bmc-year-note">20 empresas × 300 emp × $12</dd>
                 </dl>
               </article>
               <article class="bmc-block bmc-year-card">
-                <h4>Año 3 — LATAM</h4>
+                <h4>Año 3 — LATAM · 60 clientes</h4>
                 <dl>
-                  <dt>Ingreso anual</dt><dd>$2.880.000</dd>
+                  <dt>Ingresos</dt><dd>$3.060.000 USD/año</dd>
                   <dt>MRR</dt><dd>$240.000/mes</dd>
-                  <dt>Fees implementación</dt><dd>$180.000</dd>
-                  <dt>Total año 3</dt><dd class="accent">$3.060.000</dd>
-                  <dt>Costos</dt><dd>$577.200</dd>
-                  <dt>Neto</dt><dd class="accent">$2.482.800</dd>
-                  <dt>Margen</dt><dd>81%</dd>
-                  <dt>Clientes</dt><dd>60 empresas × 400 emp × $10</dd>
+                  <dt>Costos</dt><dd>$477.600/año</dd>
+                  <dt>Resultado neto</dt><dd class="accent">$2.582.400</dd>
+                  <dt>Margen bruto</dt><dd class="accent">84%</dd>
+                  <dt></dt><dd class="bmc-year-note">60 empresas × 400 emp × $10</dd>
                 </dl>
               </article>
             </div>
             <div class="bmc-chart-wrap">
               <canvas id="bmcChart" aria-label="Gráfico de ingresos, costos y resultado neto por año"></canvas>
             </div>
+            <p class="bmc-chart-note">Año 1 con equipo en equity. Año 2 y 3 con sueldos reales pagados.</p>
           </div>
           <div class="bmc-tab-panel" id="bmc-panel-costos" role="tabpanel" hidden>
             <div class="bmc-costs-grid">
@@ -5161,8 +5173,8 @@
           labels: ['Año 1', 'Año 2', 'Año 3'],
           datasets: [
             { label: 'Ingresos', data: [195000, 924000, 3060000], backgroundColor: colorToRgba(t.accent, 0.85) },
-            { label: 'Costos', data: [55680, 174000, 577200], backgroundColor: colorToRgba(t.human, 0.85) },
-            { label: 'Resultado neto', data: [139320, 750000, 2482800], backgroundColor: colorToRgba(t.data, 0.85) }
+            { label: 'Costos', data: [16692, 139200, 477600], backgroundColor: colorToRgba(t.human, 0.85) },
+            { label: 'Resultado neto', data: [178308, 784800, 2582400], backgroundColor: colorToRgba(t.data, 0.85) }
           ]
         };
         if (bmcChartInstance) {
