@@ -406,17 +406,109 @@
       .isnot-grid, .ley-grid, .pilot-grid, .calc-roi-grid, .closure-compare, .closure-bottom { grid-template-columns: 1fr; }
       .modules-bottom { grid-template-columns: 1fr; max-width: 100%; }
       .overview-grid { grid-template-columns: repeat(3, 1fr); }
+      .cover-grid { grid-template-columns: 1fr; height: auto; }
     }
+
+    /* Mobile: scrollable single page — all slides stacked */
+    html.mobile-layout,
+    body.mobile-layout {
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      height: auto !important;
+      -webkit-overflow-scrolling: touch;
+    }
+    body.mobile-layout .presentation {
+      height: auto !important;
+      min-height: 0 !important;
+      overflow: visible !important;
+    }
+    body.mobile-layout .slides-wrapper {
+      height: auto !important;
+      overflow: visible !important;
+    }
+    body.mobile-layout .slide {
+      position: relative !important;
+      inset: auto !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      height: auto !important;
+      min-height: 0 !important;
+      overflow: visible !important;
+      padding: clamp(28px, 6vw, 40px) clamp(20px, 5vw, 28px) 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-base);
+      z-index: auto !important;
+    }
+    body.mobile-layout .slide-cover {
+      background: var(--cover-gradient, var(--bg-base));
+      padding-top: clamp(32px, 8vw, 48px);
+    }
+    body.mobile-layout .slide .reveal,
+    body.mobile-layout .slide-isnot .reveal.from-left,
+    body.mobile-layout .slide-isnot .reveal.from-right {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    body.mobile-layout .cover-grid {
+      grid-template-columns: 1fr;
+      height: auto;
+      gap: 24px;
+    }
+    body.mobile-layout .cover-left,
+    body.mobile-layout .cover-right {
+      padding: 0;
+      padding-bottom: 0;
+    }
+    body.mobile-layout .cover-right img {
+      width: min(280px, 75vw) !important;
+    }
+    body.mobile-layout .slide-footer-note img {
+      width: min(280px, 75vw) !important;
+    }
+    body.mobile-layout .pilot-phase,
+    body.mobile-layout .pilot-right {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+    body.mobile-layout .pilot-vline {
+      transform: scaleY(1) !important;
+      animation: none !important;
+    }
+    body.mobile-layout .calc-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 -4px;
+    }
+    body.mobile-layout .calc-table { min-width: 520px; font-size: 11px; }
+    body.mobile-layout .nav-bar {
+      display: grid !important;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+    body.mobile-layout .progress-bar,
+    body.mobile-layout .presentation::after {
+      display: block !important;
+      position: fixed;
+      bottom: 0;
+      z-index: 101;
+    }
+    body.mobile-layout .slide:last-child {
+      padding-bottom: calc(var(--nav-h) + 32px);
+    }
+    body.mobile-layout .overview { display: none !important; }
+
     @media (max-width: 768px) {
-      html, body { overflow: auto; height: auto; }
-      .presentation { height: auto; overflow: visible; }
-      .slides-wrapper { height: auto; }
-      .slide {
-        position: relative; opacity: 1 !important; visibility: visible !important;
-        min-height: auto; padding-bottom: 32px; border-bottom: 1px solid var(--border);
-      }
-      .nav-bar, .progress-bar, .presentation::after { display: none; }
-      .overview { display: none; }
+      .overview-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -881,6 +973,7 @@
           <h2 class="headline headline-md reveal" data-d="1">El dolor invisible tiene número.<br>Estos son los supuestos.</h2>
           <p class="subhead reveal" data-d="2" style="font-size:14px;margin-bottom:16px">Empresa de 300 personas. Supuestos conservadores con fuentes.</p>
           <div class="card reveal" data-d="3">
+            <div class="calc-table-wrap">
             <table class="calc-table">
               <thead>
                 <tr><th>Componente</th><th>Supuesto</th><th>Cálculo</th><th>Valor/año</th></tr>
@@ -918,6 +1011,7 @@
                 </tr>
               </tbody>
             </table>
+            </div>
             <p class="calc-footnote">Sueldo base ~US$20k/año cargado. Rotación 15% (conservadora). Tarifa US$11/h = US$20k ÷ 1.840 hrs.</p>
           </div>
           <div class="calc-sep reveal" data-d="4"></div>
@@ -1132,6 +1226,60 @@
     const overview = document.getElementById('overview');
     const overviewGrid = document.getElementById('overviewGrid');
 
+    const MOBILE_MQ = window.matchMedia('(max-width: 768px)');
+
+    function isMobileLayout() {
+      return MOBILE_MQ.matches;
+    }
+
+    function applyLayoutMode() {
+      const mobile = isMobileLayout();
+      document.documentElement.classList.toggle('mobile-layout', mobile);
+      document.body.classList.toggle('mobile-layout', mobile);
+
+      if (mobile) {
+        slides.forEach(s => s.classList.add('active'));
+        slides.forEach(s => {
+          s.classList.remove('exit');
+          s.querySelectorAll('.reveal').forEach(el => {
+            el.style.opacity = '';
+            el.style.transform = '';
+          });
+        });
+        setTimeout(() => {
+          runRoiCountUps(document.querySelector('.slide-roi'));
+          runRoiCountUps(document.querySelector('.slide-closure'));
+        }, 100);
+      } else {
+        slides.forEach((s, i) => {
+          s.classList.toggle('active', i === current);
+          s.classList.remove('exit');
+        });
+      }
+    }
+
+    function updateMobileSlideFromScroll() {
+      if (!isMobileLayout()) return;
+      const mid = window.innerHeight * 0.35;
+      let best = 0;
+      let bestDist = Infinity;
+      slides.forEach((slide, i) => {
+        const rect = slide.getBoundingClientRect();
+        const dist = Math.abs(rect.top + rect.height * 0.2 - mid);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+      if (best !== current) {
+        current = best;
+        updateUI();
+      }
+    }
+
+    MOBILE_MQ.addEventListener('change', applyLayoutMode);
+    window.addEventListener('scroll', updateMobileSlideFromScroll, { passive: true });
+
     SLIDE_TITLES.forEach((title, i) => {
       const thumb = document.createElement('button');
       thumb.type = 'button';
@@ -1234,8 +1382,8 @@
 
     function goTo(index) {
       if (index < 0 || index >= TOTAL || index === current || isTransitioning) return;
-      if (window.matchMedia('(max-width: 768px)').matches) {
-        slides[index].scrollIntoView({ behavior: 'smooth' });
+      if (isMobileLayout()) {
+        slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
         current = index;
         updateUI();
         return;
@@ -1269,7 +1417,7 @@
     btnPrev.addEventListener('click', prev);
 
     document.addEventListener('keydown', (e) => {
-      if (window.matchMedia('(max-width: 768px)').matches) return;
+      if (isMobileLayout()) return;
       if (overview.classList.contains('open')) {
         if (e.key === 'Escape') closeOverview();
         return;
@@ -1285,7 +1433,7 @@
     }, { passive: true });
 
     document.addEventListener('touchend', (e) => {
-      if (window.matchMedia('(max-width: 768px)').matches) return;
+      if (isMobileLayout()) return;
       const dx = e.changedTouches[0].screenX - touchStartX;
       const dy = e.changedTouches[0].screenY - touchStartY;
       if (Math.abs(dx) < 50 || Math.abs(dy) > Math.abs(dx)) return;
@@ -1296,6 +1444,7 @@
       if (e.target === overview) closeOverview();
     });
 
+    applyLayoutMode();
     updateUI();
   })();
   </script>
