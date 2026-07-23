@@ -336,6 +336,11 @@
     .ley-bullet::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 7px; }
     .ley-date { font-family: var(--font-display); font-weight: 700; font-size: 28px; line-height: 1.2; margin: 8px 0 12px; }
     .ley-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--data); }
+    .ley-divider { height: 0; border: none; border-top: 0.5px solid var(--border-data); margin: 14px 0; }
+    .ley-section-title { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 6px; }
+    .ley-section-body { font-size: 12px; color: var(--text-secondary); line-height: 1.7; }
+    .ley-mean-row { display: flex; gap: 8px; align-items: flex-start; padding: 6px 0; font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+    .ley-mean-row svg { flex-shrink: 0; color: var(--data); margin-top: 3px; }
     .ley-row { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
     .ley-row svg { flex-shrink: 0; color: var(--data); margin-top: 2px; }
     .slide-ley .reveal.ley-date-reveal { transform: scale(0.92); }
@@ -401,9 +406,25 @@
     .plan-note { font-size: 12px; font-style: italic; color: var(--text-muted); margin-top: 12px; line-height: 1.5; }
     .plan-tier-note { display: inline-block; margin-top: 8px; font-size: 11px; color: var(--accent); font-weight: 600; }
 
+    /* Día a día */
+    .day-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 16px 0 20px; }
+    .day-card { opacity: 0; transform: translateY(16px); }
+    .slide-day.active .day-card { animation: dayCardIn 0.45s ease forwards; }
+    .slide-day.active .day-card:nth-child(1) { animation-delay: 150ms; }
+    .slide-day.active .day-card:nth-child(2) { animation-delay: 300ms; }
+    .slide-day.active .day-card:nth-child(3) { animation-delay: 450ms; }
+    @keyframes dayCardIn { to { opacity: 1; transform: translateY(0); } }
+    body.mobile-layout .day-card { opacity: 1 !important; transform: none !important; animation: none !important; }
+    .day-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 100px; margin-top: 10px; }
+    .day-badge-data { background: var(--data-soft); color: var(--data); border: 1px solid var(--border-data); }
+    .day-badge-accent { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--border-accent); }
+    .day-badge-human { background: var(--human-soft); color: var(--human); border: 1px solid var(--border-human); }
+    .day-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .day-tools { margin-top: 4px; text-align: center; padding: 20px; }
+
     @media (max-width: 1024px) {
       .cover-grid, .cols-2, .cols-3, .cards-3, .modules-grid, .phase-flow, .plans, .metrics-grid,
-      .isnot-grid, .ley-grid, .pilot-grid, .calc-roi-grid, .closure-compare, .closure-bottom { grid-template-columns: 1fr; }
+      .isnot-grid, .ley-grid, .pilot-grid, .calc-roi-grid, .closure-compare, .closure-bottom, .day-cards { grid-template-columns: 1fr; }
       .modules-bottom { grid-template-columns: 1fr; max-width: 100%; }
       .overview-grid { grid-template-columns: repeat(3, 1fr); }
       .cover-grid { grid-template-columns: 1fr; height: auto; }
@@ -601,7 +622,7 @@
               <div class="feature-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span>Responde preguntas sobre la empresa al instante</span></div>
               <div class="feature-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span>Guía el onboarding paso a paso por 90 días</span></div>
               <div class="feature-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span>Hace check-in lunes y viernes. Sin encuestas largas.</span></div>
-              <div class="feature-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span>Graba reuniones y extrae proyectos, decisiones y tareas</span></div>
+              <div class="feature-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span>Lee transcripciones de reuniones y extrae proyectos, decisiones y tareas</span></div>
             </div>
             <div class="card card-data">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--data)" stroke-width="1.5"><path d="M12 2a7 7 0 017 7c0 2.5-1.5 4.5-3 6l-1 5H9l-1-5c-1.5-1.5-3-3.5-3-6a7 7 0 017-7z"/><path d="M9 18h6"/></svg>
@@ -720,8 +741,55 @@
         </div>
       </section>
 
-      <!-- SLIDE 05 -->
-      <section class="slide slide-modules" data-slide="5">
+      <!-- SLIDE 06 · HILO EN TU DÍA A DÍA -->
+      <section class="slide slide-day" data-slide="5">
+        <div class="slide-inner">
+          <p class="label reveal" data-d="0">EL ASISTENTE 24/7</p>
+          <h2 class="headline headline-lg reveal" data-d="1">Hilo no espera que le preguntes.<br>Aparece cuando lo necesitas.</h2>
+          <div class="day-cards reveal" data-d="2">
+            <article class="card day-card">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--data)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <span class="day-badge day-badge-data">15 min antes</span>
+              <p class="card-title" style="font-size:16px;margin-top:8px">Te prepara para la reunión</p>
+              <p class="body-sm">Hilo te avisa que en 15 minutos tienes "Planning Q3" con Carlos y María Paz.</p>
+              <p class="body-sm" style="margin-top:8px">Te recuerda los 3 puntos que quedaron pendientes de la última vez que se juntaron.</p>
+              <p class="body-sm" style="margin-top:8px">¿Quieres llevar algo preparado?</p>
+              <div class="day-pills">
+                <span class="pill pill-outline">Sí, cuéntame →</span>
+                <span class="pill pill-outline">Estoy lista</span>
+              </div>
+            </article>
+            <article class="card day-card">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+              <span class="day-badge day-badge-accent">En cualquier momento</span>
+              <p class="card-title" style="font-size:16px;margin-top:8px">Coordina sin fricción</p>
+              <p class="body-sm">Sofía le dice a Hilo que sus prioridades cambiaron.</p>
+              <p class="body-sm" style="margin-top:8px">Hilo le pregunta cómo prefiere manejarlo con su manager.</p>
+              <div class="day-pills">
+                <span class="pill pill-outline">Yo lo coordino</span>
+                <span class="pill pill-outline">Cuéntale tú</span>
+              </div>
+              <p class="muted" style="font-size:11px;margin-top:12px">Hilo informa y sugiere. Las personas siempre deciden.</p>
+            </article>
+            <article class="card day-card">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--human)" stroke-width="1.5"><path d="M16 16l-4-4-4 4"/><path d="M1 1l22 22"/><path d="M21 6.5V17a2 2 0 01-2 2H7.5M15 4H5a2 2 0 00-2 2v10"/></svg>
+              <span class="day-badge day-badge-human">Sin importar cuándo</span>
+              <p class="card-title" style="font-size:16px;margin-top:8px">Nada se pierde</p>
+              <p class="body-sm">Sofía faltó a la reunión de esta mañana. Le pregunta a Hilo de qué se habló.</p>
+              <p class="body-sm" style="margin-top:8px">Hilo le cuenta los puntos clave, qué quedó pendiente y qué decisiones la afectan directamente.</p>
+              <p class="body-sm" style="margin-top:8px">Sin interrumpir a nadie.</p>
+            </article>
+          </div>
+          <div class="card card-accent day-tools reveal" data-d="4">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" style="margin:0 auto 10px;display:block"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/><path d="M19 14l.75 2.25L22 17l-2.25.75L19 20l-.75-2.25L16 17l2.25-.75L19 14z"/></svg>
+            <p style="font-family:var(--font-display);font-size:16px;text-align:center;line-height:1.45">Mientras más herramientas conecta tu empresa, más sabe Hilo.<br>Slack · Jira · Notion · Zoom · Meet · Teams · Confluence · Linear · GitHub</p>
+            <p class="muted" style="font-size:11px;text-align:center;margin-top:10px">Hilo no reemplaza ninguna herramienta. Las lee para ser más inteligente.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 07 -->
+      <section class="slide slide-modules" data-slide="6">
         <div class="slide-inner">
           <p class="label reveal" data-d="0">LO QUE HACE HILO</p>
           <h2 class="headline headline-md reveal" data-d="1">Cinco cosas que ninguna<br>herramienta hace junta.</h2>
@@ -742,7 +810,7 @@
               <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="var(--data)" stroke-width="1.5"><path d="M16 4a6 6 0 016 6c0 2-1 3.5-2 5l-1 4h-6l-1-4c-1-1.5-2-3-2-5a6 6 0 016-6z"/></svg>
               <p class="mod-title">Memoria institucional</p>
               <p class="body-sm">Cuando alguien se va voluntariamente, Hilo captura todo lo que sabe. La persona aprueba cada respuesta.</p>
-              <div class="mod-example" style="border-color:var(--data)">Pedro se jubila después de 8 años. En 3 sesiones de 20 min con Hilo captura procesos, contactos y decisiones que nunca estuvieron escritos. El que llegue después los tiene disponibles desde el día 1.</div>
+              <div class="mod-example" style="border-color:var(--data)">Pedro decide irse después de 8 años. Hilo le escribe: "¿Hay algo que sientas que es importante que quede? Algo que ojalá le pudieras decir a quien llegue después." Pedro responde en 5 minutos. El que llegue después ya lo sabe todo.</div>
             </article>
           </div>
           <div class="modules-bottom reveal" data-d="3">
@@ -755,15 +823,15 @@
             <article class="card mod">
               <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="4" y="8" width="24" height="16" rx="2"/><path d="M4 14h24M12 8v4M20 8v4"/></svg>
               <p class="mod-title">Reuniones y proyectos</p>
-              <p class="body-sm">Graba reuniones. Extrae proyectos, decisiones y próximos pasos.</p>
-              <div class="mod-example">Carlos graba su reunión de planning. Hilo genera el resumen, detecta 2 proyectos nuevos, los agrega al mapa y le avisa a Carlos que el equipo de Ventas tiene algo similar activo.</div>
+              <p class="body-sm">Lee las transcripciones de Zoom, Meet y Teams. Extrae proyectos, decisiones y próximos pasos.</p>
+              <div class="mod-example">Carlos termina su reunión de planning en Zoom. Hilo lee la transcripción, genera el resumen, detecta 2 proyectos nuevos y le avisa a Carlos que el equipo de Ventas tiene algo similar activo.</div>
             </article>
           </div>
         </div>
       </section>
 
       <!-- SLIDE 06 -->
-      <section class="slide slide-privacy" data-slide="6">
+      <section class="slide slide-privacy" data-slide="7">
         <div class="slide-inner">
           <p class="label reveal" data-d="0">PRIVACIDAD</p>
           <h2 class="headline headline-lg reveal" data-d="1">Hilo no es un sapo.<br>Es el aliado del empleado.</h2>
@@ -798,7 +866,7 @@
       </section>
 
       <!-- SLIDE 07 -->
-      <section class="slide slide-impl" data-slide="7">
+      <section class="slide slide-impl" data-slide="8">
         <div class="slide-inner">
           <p class="label reveal" data-d="0">LA IMPLEMENTACIÓN</p>
           <h2 class="headline headline-md reveal" data-d="1">Tu equipo no configura nada.<br>Nosotros lo hacemos por ti.</h2>
@@ -839,7 +907,7 @@
       </section>
 
       <!-- SLIDE 08 -->
-      <section class="slide slide-adoption" data-slide="8">
+      <section class="slide slide-adoption" data-slide="9">
         <div class="slide-inner">
           <p class="label reveal" data-d="0">ADOPCIÓN REAL</p>
           <h2 class="headline headline-md reveal" data-d="1">Las personas usan Hilo porque<br>ganan algo real a cambio.</h2>
@@ -875,7 +943,7 @@
       </section>
 
       <!-- SLIDE 09 -->
-      <section class="slide slide-tech" data-slide="9">
+      <section class="slide slide-tech" data-slide="10">
         <div class="slide-inner">
           <p class="label reveal" data-d="0">TECNOLOGÍA Y SEGURIDAD</p>
           <h2 class="headline headline-md reveal" data-d="1">Despliegue privado y<br>soberanía de datos.</h2>
@@ -907,7 +975,7 @@
       </section>
 
       <!-- SLIDE 10 -->
-      <section class="slide slide-pricing" data-slide="10">
+      <section class="slide slide-pricing" data-slide="11">
         <div class="slide-inner">
           <p class="label reveal" data-d="0">PLANES</p>
           <h2 class="headline headline-lg reveal" data-d="1">Elige según lo que<br>necesitas hoy.</h2>
@@ -926,9 +994,8 @@
                 <li>Chat privado con Hilo</li>
                 <li>Mapa de conocimiento</li>
                 <li>Memoria institucional</li>
-                <li>Grabación y resumen de reuniones</li>
+                <li>Lee transcripciones de reuniones (Zoom · Meet · Teams)</li>
                 <li>Organigrama del equipo</li>
-                <li>Módulo de Proyectos</li>
                 <li>Ranking + pool de 30 beneficios</li>
                 <li>Almacenamiento ilimitado para siempre</li>
               </ul>
@@ -967,7 +1034,7 @@
       </section>
 
       <!-- SLIDE 11 · ROI CALCULADORA -->
-      <section class="slide slide-roi" data-slide="11">
+      <section class="slide slide-roi" data-slide="12">
         <div class="slide-inner">
           <p class="label reveal" data-d="0">EL RETORNO</p>
           <h2 class="headline headline-md reveal" data-d="1">El dolor invisible tiene número.<br>Estos son los supuestos.</h2>
@@ -1007,7 +1074,7 @@
                   <td><strong>Total valor en juego</strong></td>
                   <td>—</td>
                   <td>—</td>
-                  <td data-roi-loss="828000">US$0</td>
+                  <td class="count-up" data-count="828000" data-prefix="US$" data-suffix="k" data-divide="1000">US$0</td>
                 </tr>
               </tbody>
             </table>
@@ -1018,7 +1085,7 @@
           <div class="calc-roi-grid reveal" data-d="4">
             <div class="calc-roi-card sin">
               <p class="calc-roi-label sin">Sin Hilo</p>
-              <p class="calc-big-loss" data-roi-loss-display="828000">US$0</p>
+              <p class="calc-big-loss count-up" data-count="828000" data-prefix="US$" data-suffix="k" data-divide="1000">US$0</p>
               <p class="body-sm">se pierden al año en rotación evitable, ramp-up y retrabajo.</p>
             </div>
             <div class="calc-roi-card con">
@@ -1026,7 +1093,7 @@
               <p class="body-sm">Inviertes <strong style="color:var(--accent)">US$36k/año</strong></p>
               <p class="body-sm" style="margin-top:8px">y recuperas <strong style="color:var(--accent)">US$124–207k</strong></p>
               <div style="height:1px;background:var(--border);margin:16px 0"></div>
-              <p class="calc-big-save" data-roi-save="171000">US$0</p>
+              <p class="calc-big-save count-up" data-count="171000" data-format="range">US$0</p>
               <p class="body-sm" style="margin-top:4px"><strong>Ahorro neto US$88–171k</strong></p>
               <p class="muted" style="font-size:11px;margin-top:8px">el primer año (300 personas × US$10/mes)</p>
             </div>
@@ -1036,7 +1103,7 @@
       </section>
 
       <!-- SLIDE 12 · LEY 21.719 -->
-      <section class="slide slide-ley" data-slide="12">
+      <section class="slide slide-ley" data-slide="13">
         <div class="slide-inner">
           <p class="label reveal" data-d="0">POR QUÉ AHORA</p>
           <h2 class="headline headline-lg reveal" data-d="1">El momento es ahora.<br>Y tiene fecha.</h2>
@@ -1052,6 +1119,28 @@
             <div class="card card-data reveal from-right ley-date-reveal" data-d="3">
               <p class="ley-label">LEY 21.719</p>
               <p class="ley-date">1 de diciembre<br>de 2026.</p>
+
+              <hr class="ley-divider">
+              <p class="ley-section-title">¿De qué se trata?</p>
+              <p class="ley-section-body">Es la nueva ley de protección de datos personales en Chile, alineada con el GDPR europeo. Obliga a todas las empresas a demostrar cómo manejan los datos de sus personas: qué recopilan, para qué, quién accede y cómo los protegen.</p>
+              <p class="ley-section-body" style="margin-top:8px">Crea una Agencia fiscalizadora con multas de hasta el 4% de los ingresos anuales por incumplimiento.</p>
+
+              <hr class="ley-divider">
+              <p class="ley-section-title">Lo que esto significa para ti</p>
+              <div class="ley-mean-row">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <span>Tu área legal ya está preguntando por esto. Es cuestión de tiempo que llegue a tu escritorio.</span>
+              </div>
+              <div class="ley-mean-row">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <span>Los datos de tus empleados son exactamente lo que la ley regula.</span>
+              </div>
+              <div class="ley-mean-row">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <span>Las empresas que no estén listas antes de diciembre 2026 quedan expuestas desde el primer día.</span>
+              </div>
+              <hr class="ley-divider">
+
               <p class="body-sm" style="margin-bottom:12px">La nueva ley de protección de datos en Chile. Marco alineado con el GDPR europeo. Nueva Agencia fiscalizadora. Multas de hasta el 4% de los ingresos anuales.</p>
               <div class="ley-row">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>
@@ -1074,7 +1163,7 @@
       </section>
 
       <!-- SLIDE 13 · EL PILOTO -->
-      <section class="slide slide-pilot" data-slide="13">
+      <section class="slide slide-pilot" data-slide="14">
         <div class="slide-inner">
           <p class="label reveal" data-d="0">EL PILOTO</p>
           <h2 class="headline headline-lg reveal" data-d="1">Bajo riesgo.<br>Medible en 8–12 semanas.</h2>
@@ -1123,7 +1212,7 @@
       </section>
 
       <!-- SLIDE 14 · EL CIERRE -->
-      <section class="slide slide-closure" data-slide="14">
+      <section class="slide slide-closure" data-slide="15">
         <div class="slide-inner">
           <p class="label reveal" data-d="0">EL CIERRE</p>
           <h2 class="headline headline-xl reveal" data-d="1" style="font-size:clamp(36px,4vw,52px)">Con Hilo vs. sin Hilo.</h2>
@@ -1131,7 +1220,7 @@
           <div class="closure-compare reveal" data-d="3">
             <div class="closure-col sin">
               <p class="calc-roi-label sin">Sin Hilo</p>
-              <p class="closure-big sin" data-roi-loss="828000">US$0</p>
+              <p class="closure-big sin count-up" data-count="828000" data-prefix="US$" data-suffix="k" data-divide="1000">US$0</p>
               <p class="body-sm" style="margin-bottom:12px">se pierden al año en rotación evitable, ramp-up y retrabajo. Para una empresa de 300 personas.</p>
               <div class="closure-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--human)" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg><span>Conocimiento que se va con cada salida</span></div>
               <div class="closure-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--human)" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg><span>Meses perdidos en cada onboarding</span></div>
@@ -1165,7 +1254,7 @@
     <div class="nav-left">
       <span class="logo">hilo</span>
     </div>
-    <div class="nav-center"><span class="cur" id="counterCurrent">1</span> / <span id="counterTotal">15</span></div>
+    <div class="nav-center"><span class="cur" id="counterCurrent">1</span> / <span id="counterTotal">16</span></div>
     <div class="nav-arrows">
       <button class="nav-btn" id="btnPrev" aria-label="Anterior" disabled>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
@@ -1175,7 +1264,7 @@
       </button>
     </div>
   </nav>
-  <div class="progress-bar" id="progressBar" style="width:6.67%"></div>
+  <div class="progress-bar" id="progressBar" style="width:6.25%"></div>
 
   <div class="overview" id="overview" role="dialog" aria-label="Vista general">
     <div class="overview-grid" id="overviewGrid"></div>
@@ -1184,11 +1273,11 @@
 
   <script>
   (function () {
-    const TOTAL = 15;
+    const TOTAL = 16;
     const SLIDE_TITLES = [
       'Portada', 'El problema', 'Qué es Hilo', 'Qué es / Qué NO es', 'Cómo funciona',
-      'Módulos', 'Privacidad', 'Implementación', 'Adopción', 'Seguridad',
-      'Planes', 'El retorno', 'Ley 21.719', 'El piloto', 'El cierre'
+      'Hilo en tu día a día', 'Módulos', 'Privacidad', 'Implementación', 'Adopción',
+      'Seguridad', 'Planes', 'El retorno', 'Ley 21.719', 'El piloto', 'El cierre'
     ];
 
     const HILO_SVG = `<g transform="rotate(-4 110 140)">
@@ -1238,23 +1327,21 @@
       document.body.classList.toggle('mobile-layout', mobile);
 
       if (mobile) {
-        slides.forEach(s => s.classList.add('active'));
         slides.forEach(s => {
+          s.classList.add('active');
           s.classList.remove('exit');
           s.querySelectorAll('.reveal').forEach(el => {
             el.style.opacity = '';
             el.style.transform = '';
           });
+          resetCountUps(s);
         });
-        setTimeout(() => {
-          runRoiCountUps(document.querySelector('.slide-roi'));
-          runRoiCountUps(document.querySelector('.slide-closure'));
-        }, 100);
       } else {
         slides.forEach((s, i) => {
           s.classList.toggle('active', i === current);
           s.classList.remove('exit');
         });
+        if (slides[current]) startSlideAnimations(slides[current]);
       }
     }
 
@@ -1274,6 +1361,7 @@
       if (best !== current) {
         current = best;
         updateUI();
+        startSlideAnimations(slides[current]);
       }
     }
 
@@ -1289,14 +1377,20 @@
       overviewGrid.appendChild(thumb);
     });
 
-    function formatROI(n) {
-      return 'US$' + Math.round(n).toLocaleString('en-US');
-    }
-
     function formatROIK(n) {
       if (n >= 1000000) return 'US$' + (n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 1) + 'M';
       if (n >= 1000) return 'US$' + Math.round(n / 1000) + 'k';
       return 'US$' + Math.round(n).toLocaleString('en-US');
+    }
+
+    function formatCountUp(el, value) {
+      const format = el.getAttribute('data-format');
+      if (format === 'range') return 'US$88–171k';
+      const divide = Number(el.getAttribute('data-divide') || 1);
+      const prefix = el.getAttribute('data-prefix') || '';
+      const suffix = el.getAttribute('data-suffix') || '';
+      if (divide > 1) return prefix + Math.round(value / divide) + suffix;
+      return formatROIK(value);
     }
 
     function updateUI() {
@@ -1309,15 +1403,16 @@
       });
     }
 
-    function resetRoi(slideEl) {
-      slideEl.querySelectorAll('[data-roi-loss], [data-roi-save], [data-roi-loss-display]').forEach(el => {
+    function resetCountUps(slideEl) {
+      if (!slideEl) return;
+      slideEl.querySelectorAll('.count-up').forEach(el => {
         el.removeAttribute('data-count-animated');
-        if (el.hasAttribute('data-roi-save')) {
-          el.textContent = 'US$0';
-        } else {
-          el.textContent = 'US$0';
-        }
+        el.textContent = 'US$0';
       });
+    }
+
+    function resetRoi(slideEl) {
+      resetCountUps(slideEl);
       if (slideEl.classList.contains('slide-pilot')) {
         slideEl.querySelectorAll('.pilot-vline, .pilot-phase, .pilot-right').forEach(el => {
           el.style.animation = 'none';
@@ -1330,45 +1425,48 @@
       }
     }
 
-    function runRoiCountUps(slideEl) {
-      if (!slideEl.classList.contains('active')) return;
-      const losses = slideEl.querySelectorAll('[data-roi-loss], [data-roi-loss-display]');
-      const savings = slideEl.querySelectorAll('[data-roi-save]');
-      const lossDuration = 500;
-      const saveDuration = 800;
-      const saveDelay = 500;
+    function runCountUps(slideEl) {
+      if (!slideEl) return;
+      const els = slideEl.querySelectorAll('.count-up');
+      if (!els.length) return;
 
-      function animate(el, target, formatter, delay, dur) {
+      els.forEach((el, i) => {
         if (el.getAttribute('data-count-animated') === '1') return;
+        const target = Number(el.getAttribute('data-count'));
+        if (Number.isNaN(target)) return;
+        const isSave = el.getAttribute('data-format') === 'range';
+        const delay = isSave ? 450 : i * 80;
+        const duration = isSave ? 900 : 700;
         const startAt = performance.now() + delay;
+
         function tick(now) {
           if (now < startAt) { requestAnimationFrame(tick); return; }
-          const t = Math.min((now - startAt) / dur, 1);
+          const t = Math.min((now - startAt) / duration, 1);
           const eased = 1 - Math.pow(1 - t, 3);
-          el.textContent = formatter(Math.round(target * eased));
+          const currentVal = Math.round(target * eased);
+          if (isSave) {
+            el.textContent = t < 1 ? formatROIK(currentVal) : 'US$88–171k';
+          } else {
+            el.textContent = formatCountUp(el, currentVal);
+          }
           if (t < 1) requestAnimationFrame(tick);
           else {
-            el.textContent = target >= 1000 ? formatROIK(target) : formatter(target);
-            if (el.hasAttribute('data-roi-save')) el.textContent = 'US$88–171k';
+            el.textContent = formatCountUp(el, target);
             el.setAttribute('data-count-animated', '1');
           }
         }
         requestAnimationFrame(tick);
-      }
-
-      losses.forEach(el => {
-        const target = Number(el.getAttribute('data-roi-loss') || el.getAttribute('data-roi-loss-display'));
-        if (!Number.isNaN(target)) animate(el, target, formatROIK, 0, lossDuration);
-      });
-      savings.forEach(el => {
-        const target = Number(el.getAttribute('data-roi-save'));
-        if (!Number.isNaN(target)) animate(el, target, formatROIK, saveDelay, saveDuration);
       });
     }
 
     function startSlideAnimations(slideEl) {
-      if (slideEl.classList.contains('slide-roi') || slideEl.classList.contains('slide-closure')) {
-        runRoiCountUps(slideEl);
+      if (!slideEl) return;
+      if (slideEl.querySelector('.count-up')) {
+        resetCountUps(slideEl);
+        // Allow DOM to settle, then animate
+        requestAnimationFrame(() => {
+          runCountUps(slideEl);
+        });
       }
       if (slideEl.classList.contains('slide-pilot') && slideEl.classList.contains('active')) {
         const vline = slideEl.querySelector('.pilot-vline');
@@ -1380,12 +1478,32 @@
       }
     }
 
+    // Mobile: trigger count-ups when ROI/closure slides enter viewport
+    const countUpObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!isMobileLayout()) return;
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+          const needsAnim = [...entry.target.querySelectorAll('.count-up')].some(
+            el => el.getAttribute('data-count-animated') !== '1'
+          );
+          if (needsAnim) startSlideAnimations(entry.target);
+        } else if (!entry.isIntersecting) {
+          resetCountUps(entry.target);
+        }
+      });
+    }, { threshold: [0, 0.35, 0.6] });
+
+    document.querySelectorAll('.slide-roi, .slide-closure').forEach(slide => {
+      countUpObserver.observe(slide);
+    });
+
     function goTo(index) {
       if (index < 0 || index >= TOTAL || index === current || isTransitioning) return;
       if (isMobileLayout()) {
         slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
         current = index;
         updateUI();
+        startSlideAnimations(slides[index]);
         return;
       }
       isTransitioning = true;
@@ -1403,8 +1521,10 @@
         nextSlide.classList.add('active');
         current = index;
         updateUI();
-        setTimeout(() => startSlideAnimations(nextSlide), 450);
-        setTimeout(() => { isTransitioning = false; }, 400);
+        setTimeout(() => {
+          startSlideAnimations(nextSlide);
+          isTransitioning = false;
+        }, 80);
       }, 400);
     }
 
