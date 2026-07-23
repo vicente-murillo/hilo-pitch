@@ -407,12 +407,13 @@
     .plan-tier-note { display: inline-block; margin-top: 8px; font-size: 11px; color: var(--accent); font-weight: 600; }
 
     /* Día a día */
-    .day-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 16px 0 20px; }
+    .day-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin: 16px 0 20px; }
     .day-card { opacity: 0; transform: translateY(16px); }
     .slide-day.active .day-card { animation: dayCardIn 0.45s ease forwards; }
     .slide-day.active .day-card:nth-child(1) { animation-delay: 150ms; }
     .slide-day.active .day-card:nth-child(2) { animation-delay: 300ms; }
     .slide-day.active .day-card:nth-child(3) { animation-delay: 450ms; }
+    .slide-day.active .day-card:nth-child(4) { animation-delay: 600ms; }
     @keyframes dayCardIn { to { opacity: 1; transform: translateY(0); } }
     body.mobile-layout .day-card { opacity: 1 !important; transform: none !important; animation: none !important; }
     .day-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 100px; margin-top: 10px; }
@@ -778,6 +779,18 @@
               <p class="body-sm">Sofía faltó a la reunión de esta mañana. Le pregunta a Hilo de qué se habló.</p>
               <p class="body-sm" style="margin-top:8px">Hilo le cuenta los puntos clave, qué quedó pendiente y qué decisiones la afectan directamente.</p>
               <p class="body-sm" style="margin-top:8px">Sin interrumpir a nadie.</p>
+            </article>
+            <article class="card day-card">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--data)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <span class="day-badge day-badge-data">9:28 AM</span>
+              <p class="card-title" style="font-size:16px;margin-top:8px">La daily en la mitad del tiempo</p>
+              <p class="body-sm">Antes de que empiece la daily, Hilo ya le dijo a Carlos en qué trabaja cada persona y quién tiene un bloqueo.</p>
+              <p class="body-sm" style="margin-top:8px">La reunión arranca con contexto. Solo se habla de lo que importa.</p>
+              <div class="day-pills">
+                <span class="pill pill-outline">Ver foco del equipo →</span>
+                <span class="pill pill-outline">Ver bloqueos →</span>
+              </div>
+              <p class="muted" style="font-size:11px;margin-top:12px">O sin daily: el manager ve el foco del equipo directamente en Hilo, sin reunión.</p>
             </article>
           </div>
           <div class="card card-accent day-tools reveal" data-d="4">
