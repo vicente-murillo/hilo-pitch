@@ -320,7 +320,6 @@
     .isnot-row { display: flex; gap: 10px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--border-subtle); font-size: 15px; color: var(--text-primary); line-height: 1.5; }
     .isnot-row:last-child { border-bottom: none; }
     .isnot-row svg { flex-shrink: 0; margin-top: 3px; }
-    .isnot-foot { margin-top: 16px; padding: 16px 20px; border-radius: 14px; border: 1px solid var(--border); background: var(--rule-card-bg); text-align: center; font-size: 14px; font-style: italic; color: var(--text-secondary); line-height: 1.6; }
     .slide-isnot .reveal.from-left { transform: translateX(-24px); }
     .slide-isnot .reveal.from-right { transform: translateX(24px); }
     .slide-isnot.active .reveal.from-left,
@@ -697,7 +696,6 @@
               </div>
             </div>
           </div>
-          <div class="isnot-foot reveal" data-d="6">La columna de la derecha es tan importante como la izquierda: es lo que evita que la conversación se vaya hacia Gran Hermano.</div>
         </div>
       </section>
 
@@ -722,8 +720,8 @@
               <div class="avatar avatar-human">CH</div>
               <p class="card-title">El manager</p>
               <p class="role-sub">Gerentes · Líderes</p>
-              <p class="body-sm" style="margin-bottom:14px">Hilo detecta señales en su equipo antes de que sean un problema. No necesita hacer reuniones de seguimiento para saber cómo está su gente.</p>
-              <div class="moment"><p class="moment-label" style="color:var(--human)">Lunes</p><p class="moment-text">Resumen del equipo. Sin abrir la app: ¿Quién necesita atención?</p></div>
+              <p class="body-sm" style="margin-bottom:14px">Hilo le muestra el estado general de su equipo en datos 100% anónimos y agregados. Sin encuestas, sin reuniones, sin señalar a nadie.</p>
+              <div class="moment"><p class="moment-label" style="color:var(--human)">Lunes</p><p class="moment-text">Resumen del equipo. Sin abrir la app: ¿Cómo está llegando el equipo a esta semana?</p></div>
               <div class="moment"><p class="moment-label" style="color:var(--human)">Alertas</p><p class="moment-text">Estado anónimo del equipo. No quién está mal. Cuántos están mal.</p></div>
               <div class="moment"><p class="moment-label" style="color:var(--human)">Proyectos</p><p class="moment-text">Sabe en qué trabaja cada persona. Sin preguntar. Sin reuniones de status.</p></div>
               <div class="moment"><p class="moment-label" style="color:var(--human)">Sugerencias</p><p class="moment-text">Hilo le dice cuándo aparecer y por qué. La conversación siempre es suya.</p></div>
@@ -822,8 +820,8 @@
             <article class="card mod">
               <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="var(--data)" stroke-width="1.5"><path d="M16 4a6 6 0 016 6c0 2-1 3.5-2 5l-1 4h-6l-1-4c-1-1.5-2-3-2-5a6 6 0 016-6z"/></svg>
               <p class="mod-title">Memoria institucional</p>
-              <p class="body-sm">Cuando alguien se va voluntariamente, Hilo captura todo lo que sabe. La persona aprueba cada respuesta.</p>
-              <div class="mod-example" style="border-color:var(--data)">Pedro decide irse después de 8 años. Hilo le escribe: "¿Hay algo que sientas que es importante que quede? Algo que ojalá le pudieras decir a quien llegue después." Pedro responde en 5 minutos. El que llegue después ya lo sabe todo.</div>
+              <p class="body-sm">Una conversación breve y emotiva cuando alguien decide irse. Hilo habla primero. La persona comparte lo que considera importante. Máximo 3 intercambios.</p>
+              <div class="mod-example" style="border-color:var(--data)">Pedro decide irse después de 8 años. Hilo le escribe: "¿Hay algo que sientas que es importante que quede?" Pedro responde en 5 minutos. El que llegue después ya lo sabe todo.</div>
             </article>
           </div>
           <div class="modules-bottom reveal" data-d="3">
@@ -1087,7 +1085,7 @@
                   <td><strong>Total valor en juego</strong></td>
                   <td>—</td>
                   <td>—</td>
-                  <td class="count-up" data-count="828000" data-prefix="US$" data-suffix="k" data-divide="1000">US$0</td>
+                  <td>US$828k</td>
                 </tr>
               </tbody>
             </table>
@@ -1098,7 +1096,7 @@
           <div class="calc-roi-grid reveal" data-d="4">
             <div class="calc-roi-card sin">
               <p class="calc-roi-label sin">Sin Hilo</p>
-              <p class="calc-big-loss count-up" data-count="828000" data-prefix="US$" data-suffix="k" data-divide="1000">US$0</p>
+              <p class="calc-big-loss">US$828k</p>
               <p class="body-sm">se pierden al año en rotación evitable, ramp-up y retrabajo.</p>
             </div>
             <div class="calc-roi-card con">
@@ -1106,7 +1104,7 @@
               <p class="body-sm">Inviertes <strong style="color:var(--accent)">US$36k/año</strong></p>
               <p class="body-sm" style="margin-top:8px">y recuperas <strong style="color:var(--accent)">US$124–207k</strong></p>
               <div style="height:1px;background:var(--border);margin:16px 0"></div>
-              <p class="calc-big-save count-up" data-count="171000" data-format="range">US$0</p>
+              <p class="calc-big-save">US$88–171k</p>
               <p class="body-sm" style="margin-top:4px"><strong>Ahorro neto US$88–171k</strong></p>
               <p class="muted" style="font-size:11px;margin-top:8px">el primer año (300 personas × US$10/mes)</p>
             </div>
@@ -1233,7 +1231,7 @@
           <div class="closure-compare reveal" data-d="3">
             <div class="closure-col sin">
               <p class="calc-roi-label sin">Sin Hilo</p>
-              <p class="closure-big sin count-up" data-count="828000" data-prefix="US$" data-suffix="k" data-divide="1000">US$0</p>
+              <p class="closure-big sin">US$828k</p>
               <p class="body-sm" style="margin-bottom:12px">se pierden al año en rotación evitable, ramp-up y retrabajo. Para una empresa de 300 personas.</p>
               <div class="closure-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--human)" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg><span>Conocimiento que se va con cada salida</span></div>
               <div class="closure-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--human)" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg><span>Meses perdidos en cada onboarding</span></div>
@@ -1347,7 +1345,6 @@
             el.style.opacity = '';
             el.style.transform = '';
           });
-          resetCountUps(s);
         });
       } else {
         slides.forEach((s, i) => {
@@ -1374,7 +1371,6 @@
       if (best !== current) {
         current = best;
         updateUI();
-        startSlideAnimations(slides[current]);
       }
     }
 
@@ -1390,22 +1386,6 @@
       overviewGrid.appendChild(thumb);
     });
 
-    function formatROIK(n) {
-      if (n >= 1000000) return 'US$' + (n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 1) + 'M';
-      if (n >= 1000) return 'US$' + Math.round(n / 1000) + 'k';
-      return 'US$' + Math.round(n).toLocaleString('en-US');
-    }
-
-    function formatCountUp(el, value) {
-      const format = el.getAttribute('data-format');
-      if (format === 'range') return 'US$88–171k';
-      const divide = Number(el.getAttribute('data-divide') || 1);
-      const prefix = el.getAttribute('data-prefix') || '';
-      const suffix = el.getAttribute('data-suffix') || '';
-      if (divide > 1) return prefix + Math.round(value / divide) + suffix;
-      return formatROIK(value);
-    }
-
     function updateUI() {
       counterCurrent.textContent = current + 1;
       progressBar.style.width = ((current + 1) / TOTAL * 100) + '%';
@@ -1416,16 +1396,8 @@
       });
     }
 
-    function resetCountUps(slideEl) {
-      if (!slideEl) return;
-      slideEl.querySelectorAll('.count-up').forEach(el => {
-        el.removeAttribute('data-count-animated');
-        el.textContent = 'US$0';
-      });
-    }
-
     function resetRoi(slideEl) {
-      resetCountUps(slideEl);
+      if (!slideEl) return;
       if (slideEl.classList.contains('slide-pilot')) {
         slideEl.querySelectorAll('.pilot-vline, .pilot-phase, .pilot-right').forEach(el => {
           el.style.animation = 'none';
@@ -1438,49 +1410,8 @@
       }
     }
 
-    function runCountUps(slideEl) {
-      if (!slideEl) return;
-      const els = slideEl.querySelectorAll('.count-up');
-      if (!els.length) return;
-
-      els.forEach((el, i) => {
-        if (el.getAttribute('data-count-animated') === '1') return;
-        const target = Number(el.getAttribute('data-count'));
-        if (Number.isNaN(target)) return;
-        const isSave = el.getAttribute('data-format') === 'range';
-        const delay = isSave ? 450 : i * 80;
-        const duration = isSave ? 900 : 700;
-        const startAt = performance.now() + delay;
-
-        function tick(now) {
-          if (now < startAt) { requestAnimationFrame(tick); return; }
-          const t = Math.min((now - startAt) / duration, 1);
-          const eased = 1 - Math.pow(1 - t, 3);
-          const currentVal = Math.round(target * eased);
-          if (isSave) {
-            el.textContent = t < 1 ? formatROIK(currentVal) : 'US$88–171k';
-          } else {
-            el.textContent = formatCountUp(el, currentVal);
-          }
-          if (t < 1) requestAnimationFrame(tick);
-          else {
-            el.textContent = formatCountUp(el, target);
-            el.setAttribute('data-count-animated', '1');
-          }
-        }
-        requestAnimationFrame(tick);
-      });
-    }
-
     function startSlideAnimations(slideEl) {
       if (!slideEl) return;
-      if (slideEl.querySelector('.count-up')) {
-        resetCountUps(slideEl);
-        // Allow DOM to settle, then animate
-        requestAnimationFrame(() => {
-          runCountUps(slideEl);
-        });
-      }
       if (slideEl.classList.contains('slide-pilot') && slideEl.classList.contains('active')) {
         const vline = slideEl.querySelector('.pilot-vline');
         if (vline) {
@@ -1491,32 +1422,12 @@
       }
     }
 
-    // Mobile: trigger count-ups when ROI/closure slides enter viewport
-    const countUpObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!isMobileLayout()) return;
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
-          const needsAnim = [...entry.target.querySelectorAll('.count-up')].some(
-            el => el.getAttribute('data-count-animated') !== '1'
-          );
-          if (needsAnim) startSlideAnimations(entry.target);
-        } else if (!entry.isIntersecting) {
-          resetCountUps(entry.target);
-        }
-      });
-    }, { threshold: [0, 0.35, 0.6] });
-
-    document.querySelectorAll('.slide-roi, .slide-closure').forEach(slide => {
-      countUpObserver.observe(slide);
-    });
-
     function goTo(index) {
       if (index < 0 || index >= TOTAL || index === current || isTransitioning) return;
       if (isMobileLayout()) {
         slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
         current = index;
         updateUI();
-        startSlideAnimations(slides[index]);
         return;
       }
       isTransitioning = true;
