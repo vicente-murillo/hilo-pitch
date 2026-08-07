@@ -243,6 +243,13 @@
     .privacy-list { list-style: none; margin-top: 12px; }
     .privacy-list li { font-size: 13px; color: var(--text-secondary); padding: 6px 0; line-height: 1.5; }
     .rule-card { margin-top: 16px; padding: 14px 16px; background: var(--rule-card-bg); border: 1px dashed var(--border); border-radius: 14px; font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+    .privacy-conf { margin-top: 16px; }
+    .privacy-conf-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--text-primary); }
+    .privacy-conf-rows { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 14px; }
+    .privacy-conf-row { display: flex; gap: 10px; align-items: flex-start; }
+    .privacy-conf-row .conf-icon { font-size: 16px; line-height: 1.4; flex-shrink: 0; }
+    .privacy-conf-row strong { display: block; font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+    .privacy-conf-row span { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
 
     .phase-flow { position: relative; display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin: 24px 0; }
     .phase-line { position: absolute; top: 48px; left: 5%; right: 5%; height: 2px; z-index: 0; }
@@ -424,7 +431,8 @@
 
     @media (max-width: 1024px) {
       .cover-grid, .cols-2, .cols-3, .cards-3, .modules-grid, .phase-flow, .plans, .metrics-grid,
-      .isnot-grid, .ley-grid, .pilot-grid, .calc-roi-grid, .closure-compare, .closure-bottom, .day-cards { grid-template-columns: 1fr; }
+      .isnot-grid, .ley-grid, .pilot-grid, .calc-roi-grid, .closure-compare, .closure-bottom, .day-cards,
+      .privacy-conf-rows { grid-template-columns: 1fr; }
       .modules-bottom { grid-template-columns: 1fr; max-width: 100%; }
       .overview-grid { grid-template-columns: repeat(3, 1fr); }
       .cover-grid { grid-template-columns: 1fr; height: auto; }
@@ -601,9 +609,9 @@
           <div class="highlight-bar reveal" data-d="3">
             <div style="flex:1">
               <svg class="card-icon" viewBox="0 0 32 32" fill="none" stroke="var(--human)" stroke-width="1.5" style="margin-bottom:8px"><path d="M8 24l8-16 8 8 8-12"/></svg>
-              <p class="problem-stat-lg">75%</p>
-              <p class="body-text" style="color:var(--text-primary);font-size:15px;margin-top:8px">de las renuncias voluntarias eran evitables. Tres de cada cuatro no tenían que pasar.</p>
-              <p class="muted" style="font-size:12px;font-style:italic;margin-top:8px">Work Institute 2025</p>
+              <p class="problem-stat-lg">31,5</p>
+              <p class="body-text" style="color:var(--text-primary);font-size:15px;margin-top:8px">Qué tan dispuestos están los empleados en Chile a recomendar su trabajo (eNPS). El más bajo de LATAM.</p>
+              <p class="muted" style="font-size:12px;font-style:italic;margin-top:8px">Rankmi · Clima Organizacional LATAM 2025</p>
             </div>
           </div>
         </div>
@@ -872,6 +880,33 @@
           <div class="rule-card reveal" data-d="4">Los datos de bienestar son siempre anónimos y agregados. Jamás se nombra a nadie. Si un equipo tiene menos de 5 personas, sus datos se agregan al nivel empresa sin distinguir equipo.</div>
           <div class="card card-human reveal" data-d="5" style="margin-top:16px;text-align:center;padding:20px">
             <p style="font-family:var(--font-display);font-size:18px;line-height:1.5">El empleado puede reportar a RRHH cuando quiera, lo que quiera, de forma anónima o con su nombre. Pero siempre es su decisión. Nunca de Hilo.</p>
+          </div>
+          <div class="card card-data privacy-conf reveal" data-d="6">
+            <p class="privacy-conf-title">¿Y los proyectos confidenciales?</p>
+            <p class="body-sm">Managers y gerentes pueden marcar cualquier proyecto como protegido. Hilo lo sigue conociendo, pero no lo expone a quien no tenga acceso. Si alguien pregunta, Hilo responde con transparencia — y le avisa al manager.</p>
+            <div class="privacy-conf-rows">
+              <div class="privacy-conf-row">
+                <span class="conf-icon">🔒</span>
+                <div>
+                  <strong>Proyecto protegido, no oculto</strong>
+                  <span>Hilo reconoce que existe. No inventa un "no sé nada" que rompe la confianza.</span>
+                </div>
+              </div>
+              <div class="privacy-conf-row">
+                <span class="conf-icon">🔔</span>
+                <div>
+                  <strong>Alerta al manager</strong>
+                  <span>Si alguien sin acceso pregunta, el manager se entera y decide si dar acceso o no.</span>
+                </div>
+              </div>
+              <div class="privacy-conf-row">
+                <span class="conf-icon">📅</span>
+                <div>
+                  <strong>Exclusión desde el origen</strong>
+                  <span>Calendarios y canales de liderazgo senior pueden no conectarse nunca — Hilo ni siquiera tiene acceso técnico.</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
